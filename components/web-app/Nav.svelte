@@ -1,4 +1,3 @@
-
 <nav>
-    main nav 2
+    <slot />
 </nav>

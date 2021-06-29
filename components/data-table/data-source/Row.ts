@@ -1,8 +1,8 @@
 import type {IHeaderItem, IHeaderItemGroup} from "./Header";
 import type {Column} from "./Column";
-import type {Store} from "@lib/util/observable/store";
-import {getOrCreateEntry} from "@lib/util/collection/map";
-import {createStore} from "@lib/util/observable/store";
+import type {Store} from "@svlib/util/observable/store";
+import {getOrCreateEntry} from "@svlib/util/collection/map";
+import {createStore} from "@svlib/util/observable/store";
 
 export class Row<T = Object> {
 
