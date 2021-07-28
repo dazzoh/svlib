@@ -1,4 +1,4 @@
-import {trimBoth} from "@spktr/util/string/trim";
+import {trimBoth} from "./trim";
 
 /**
  * Test if a string var is null or empty.

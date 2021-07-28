@@ -1,3 +1,6 @@
+// Helper functions for working with form data / models.
+
+
 /**
  * Create a function for comparing objects.
  * @param comparator - pass an existing function in, a property name (string), or nothing to return a basic object equality function

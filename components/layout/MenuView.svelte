@@ -7,7 +7,7 @@
             class:horizontal={layout==="horizontal"}>
         <slot name="menu"/>
     </header>
-    <main class="flex-1 overflow-auto min-h-0 min-w-0 bg-gray-500 text-white">
+    <main class="flex-1 overflow-auto min-h-0 min-w-0 bg-gray-500 text-white flex">
         <slot name="view"/>
     </main>
 </div>

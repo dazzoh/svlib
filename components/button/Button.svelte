@@ -1,25 +1,59 @@
-{#if kind === ButtonKind.Default }
+<script lang="ts">
+import { createEventDispatcher } from "svelte";
 
-    <button on:click={click}
-            type={type ?? 'button'}
-            disabled={disabled}
-            data-button-size={size}
-            class:waiting
-            class={`btn bg-primary text-white rounded py-0.5 px-3 inline-flex justify-center items-center ${className ?? ''}`}>
+    import { ButtonKind, ButtonSize } from "./button";
+    const dispatch = createEventDispatcher<{ click: MouseEvent }>();
+
+    export let kind = ButtonKind.Default;
+    // export let onClick: (e: Event) => Promise<any> | undefined;
+    export let disabled = false;
+    export let className = "";
+    export let type: "button" | "submit" | "reset" = "button";
+    export let size: ButtonSize = ButtonSize.Default;
+    export let waiting: Promise<any> | undefined = undefined;
+
+    let clicked;    
+
+    function click(e:MouseEvent) {
+        if (waiting || (e.currentTarget as HTMLButtonElement)!.disabled) {
+            return; // waiting on promise to resolve or button is disabled
+        }
+        console.log("click");
+        animateClick();
+        dispatch("click", e);
+    }
+
+    function animateClick() {
+        clicked = true;
+        setTimeout(() => (clicked = false), 700);
+    }
+</script>
+
+{#if kind === ButtonKind.Default}
+    <button
+        on:click={click}
+        type={type ?? "button"}
+        {disabled}
+        data-button-size={size}
+        class:waiting
+        class={`btn bg-primary text-white rounded py-0.5 px-3 inline-flex justify-center items-center ${
+            className ?? ""
+        }`}
+    >
         <!--        <Show when={waiting}>-->
         <!--            <ProgressRing diameter={15}/>-->
         <!--        </Show>-->
-        <span><slot/></span>
+        <span><slot /></span>
     </button>
-
 {:else if kind === ButtonKind.IconRound}
-
-    <button on:click={click}
-            type='button'
-            disabled={disabled}
-            data-button-size={size}
-            class:waiting
-            class="btn iconRound">
+    <button
+        on:click={click}
+        type="button"
+        {disabled}
+        data-button-size={size}
+        class:waiting
+        class="btn iconRound"
+    >
         <!--        <Show when={state.waiting}>-->
         <!--            <ProgressRing diameter={15} />-->
         <!--        </Show>-->
@@ -33,48 +67,16 @@
         <!--    >-->
         <!--    </span>-->
         <!--        </Show>-->
-        <slot/>
+        <slot />
     </button>
 {/if}
 
-
-<script lang="ts">
-
-    import {ButtonKind, ButtonSize} from "./button";
-
-    export let kind = ButtonKind.Default;
-    export let onClick: (e: Event) => Promise<any> | undefined;
-    export let disabled: () => boolean = undefined;
-    export let className = "";
-    export let type: 'button' | 'submit' | 'reset' = "button";
-    export let size: ButtonSize = ButtonSize.Default;
-
-    let clicked;
-    let waiting: Promise<any> | undefined;
-
-    function click(e) {
-
-        if (waiting || e.currentTarget.disabled) {
-            return; // waiting on promise to resolve or button is disabled
-        }
-        console.log("click")
-        animateClick();
-        waiting = onClick(e);
-    }
-
-    function animateClick() {
-        clicked = true;
-        setTimeout(() => clicked = false, 700);
-    }
-</script>
-
 <style lang="postcss">
-
     .btn {
         @apply h-form-control inline-flex justify-center items-center relative;
 
         &[data-button-size="0"] {
-            height: calc(.80 * var(--height-form-control))
+            height: calc(0.8 * var(--height-form-control));
         }
 
         &[data-button-size="1"] {
@@ -82,7 +84,7 @@
         }
 
         &[data-button-size="2"] {
-            height: calc(1.3 * var(--height-form-control))
+            height: calc(1.3 * var(--height-form-control));
         }
 
         &:disabled {
@@ -90,7 +92,6 @@
             box-shadow: none;
             opacity: 0.7;
         }
-
 
         &.iconRound {
             /**
@@ -111,7 +112,7 @@
             /* ButtonSize.Small */
 
             &[data-button-size="0"] {
-                width: calc(.80 * var(--height-form-control));
+                width: calc(0.8 * var(--height-form-control));
             }
 
             /* ButtonSize.Default */
@@ -131,5 +132,4 @@
     .waiting {
         cursor: auto;
     }
-
 </style>
