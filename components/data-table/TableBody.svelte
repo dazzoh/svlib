@@ -18,7 +18,7 @@
 </script>
 
 <style lang="postcss">
-    .tbody :global(tr:hover td, tr:hover th) {
+    .tbody :global(tr:hover td), :global(tr:hover th) {
         @apply bg-primary-xxlight
     }
 </style>

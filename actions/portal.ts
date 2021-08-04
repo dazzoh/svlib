@@ -7,7 +7,7 @@ export function portal(node: HTMLElement, selector: string) {
     state[selector].portalChildren = node.children
 
     // Find where the portal should go
-    state[selector].targetNode = document.querySelector(selector)
+    state[selector].targetNode = document.querySelector(selector)    
 
     // Backup the children of what the portal will replace
     state[selector].targetNodeChildren = state[selector].targetNode.children

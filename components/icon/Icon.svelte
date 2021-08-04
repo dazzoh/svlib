@@ -1,7 +1,6 @@
 <script lang="ts">
     export let title = "";
     export let className = "";
-
 </script>
 
 <svg viewBox={`0 0 32 32`} class={`icon ${className}`}>

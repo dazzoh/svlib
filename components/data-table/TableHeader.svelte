@@ -19,7 +19,7 @@
 
 <script lang="ts">
 
-    import {DataSource} from "./data-source";
+    import type {DataSource} from "./data-source";
     import TableHeaderCell from "./TableHeaderCell.svelte";
     import TableHeaderGroupRow from "./TableHeaderGroupRow.svelte";
     import StickyCell from "./StickyCell.svelte";

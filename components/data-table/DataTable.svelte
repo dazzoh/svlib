@@ -24,7 +24,7 @@
         border-collapse: separate;
         border-spacing: 0;
 
-        :global(td, th) {
+        :global(td), :global(th) {
             border: 1px solid var(--border-color);
             border-bottom: none;
             border-left: none;
@@ -39,15 +39,15 @@
             border-left: 1px solid var(--border-color);
         }
 
-        :global(tbody tr:nth-child(even)  td, tbody tr:nth-child(even) th) {
+        :global(tbody tr:nth-child(even) td), :global(tbody tr:nth-child(even) th) {
             background: #f1f1f1;
         }
 
-        :global(tbody tr:nth-child(odd)  td,tbody tr:nth-child(odd) th) {
+        :global(tbody tr:nth-child(odd)  td), :global(tbody tr:nth-child(odd) th) {
             background: white;
         }
 
-        :global(tbody tr:last-child td,tbody tr:last-child td th) {
+        :global(tbody tr:last-child td), :global(tbody tr:last-child td th) {
             border-bottom: 1px solid var(--border-color);
         }
 

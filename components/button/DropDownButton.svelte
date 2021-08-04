@@ -1,30 +1,7 @@
-<span bind:this={component}
-      class='flex-1 flex relative flex-shrink-0 min-w-0'
-      class:disabled>
-    <button on:click={click}
-            bind:this={button}
-            class="btn pl-1 flex flex-1 text-left min-w-0 items-center"
-            {disabled}>
-        <span class="buttonLabel">
-            <slot name="label"/>
-        </span>
-    </button>
-    {#if show}
-        <div use:portal={portalSelector}>
-            <div bind:this={content}
-                 use:focusLost={{callback:() => { toggle(false)}}}
-                 class="content"
-                 style="top: {top}px; left:{left}px">
-                  <slot name="content"/>
-            </div>
-        </div>
-    {/if}
-</span>
-
 <script lang="ts">
-    import {focusLost} from "../../actions/focus-lost";
-    import {portal} from "../../actions/portal";
-    import {createEventDispatcher} from "svelte";
+    import { focusLost } from "../../actions/focus-lost";
+    import { portal } from "../../actions/portal";
+    import { createEventDispatcher } from "svelte";
 
     export let disabled = false;
     export let show = false;
@@ -58,14 +35,46 @@
     $: {
         if (button) {
             const buttonOffsets = button.getBoundingClientRect();
-            top = buttonOffsets.bottom
+            top = buttonOffsets.bottom;
             left = buttonOffsets.left;
         }
     }
 </script>
 
-<style lang="postcss">
+<span
+    bind:this={component}
+    class="flex-1 flex relative flex-shrink-0 min-w-0"
+    class:disabled
+>
+    <button
+        on:click={click}
+        bind:this={button}
+        class="btn pl-1 flex flex-1 text-left min-w-0 items-center"
+        {disabled}
+    >
+        <span class="buttonLabel">
+            <slot name="label" />
+        </span>
+    </button>
+    {#if show}
+        <div use:portal={portalSelector}>
+            <div
+                bind:this={content}
+                use:focusLost={{
+                    callback: () => {
+                        toggle(false);
+                    },
+                }}
+                class="content"
+                style="top: {top}px; left:{left}px"
+            >
+                <slot name="content" />
+            </div>
+        </div>
+    {/if}
+</span>
 
+<style lang="postcss">
     .btn {
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
         background-position: right center;
@@ -77,7 +86,7 @@
     }
 
     .disabled {
-        opacity: .5;
+        opacity: 0.5;
     }
 
     .buttonLabel {
@@ -90,5 +99,4 @@
         box-shadow: 0 0 8px 0 #0000004f;
         transform: translateZ(0);
     }
-
 </style>
