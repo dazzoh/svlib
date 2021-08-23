@@ -1,7 +1,7 @@
 <script lang="ts">
 import { createEventDispatcher } from "svelte";
 
-    import { ButtonKind, ButtonSize } from "./button";
+    import { ButtonKind, ButtonSize } from "./types.ts";
     const dispatch = createEventDispatcher<{ click: MouseEvent }>();
 
     export let kind = ButtonKind.Default;

@@ -25,6 +25,6 @@ export function createTemplateRenderer(definition?: TemplateDefinition) {
 }
 
 
-export function getService<T>(clazz: { new(): T }): T {
+export function getService<T>(clazz: { new(args?:any[]): T }): T {
     return getContext(clazz) as T;
 }

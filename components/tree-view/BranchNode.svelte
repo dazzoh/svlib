@@ -29,7 +29,7 @@
     import type {Branch} from "./tree-view";
     import {isBranchNode} from "./tree-view";
     import Button from "../button/Button.svelte";
-    import {ButtonKind, ButtonSize} from "../button/button";
+    import {ButtonKind, ButtonSize} from "../button/types";
     import IconTriangle from "../icon/IconTriangle.svelte";
     import LeafNode from "./LeafNode.svelte";
 
