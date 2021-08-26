@@ -1,8 +1,8 @@
 <script>
-
+    export let className=""
 </script>
 
-<div class="panel" >
+<div class={`panel ${className}`}>
     <h2  class="header px-2 bg-gradient-to-r from-dark-400 to-dark-500  ">
         <span class="flex-1">
             <slot name="header" />
