@@ -25,6 +25,11 @@ export function createTemplateRenderer(definition?: TemplateDefinition) {
 }
 
 
-export function getService<T>(clazz: { new(args?:any[]): T }): T {
+/**
+ * Wraps the svelte getContext to give type hints for assignment.
+ * @param clazz 
+ * @returns 
+ */
+export function getService<T>(clazz: { new(args?:any): T }): T {
     return getContext(clazz) as T;
 }

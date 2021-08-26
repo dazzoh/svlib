@@ -9,7 +9,7 @@
     /**
      *  rotation in deg eg: -90deg
      */
-    export let rotate: string = undefined;
+    export let rotate: string | undefined = undefined;
 
     let svgEle: SVGSVGElement;
 

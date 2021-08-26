@@ -6,7 +6,7 @@
                 <slot name="leaf"  slot="leaf" let:node {node}   />
             </BranchNode>
         {:else}
-            <LeafNode  {node} depth={0} >
+            <LeafNode {node} depth={0}>
                 <slot name="leaf" slot="leaf" let:node {node}  />
             </LeafNode>
         {/if}

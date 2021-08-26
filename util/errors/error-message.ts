@@ -1,5 +1,7 @@
 // errors from using http fetch command
-import {isEmpty} from "@spktr/util/string";
+
+import { isEmpty } from "../string";
+
 
 export interface IFetchError {
     status: number;

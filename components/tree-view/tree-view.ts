@@ -15,7 +15,7 @@ export type TreeNode = {
 
 export type Branch = TreeNode & {
     collapsed: Store<boolean>;
-    children: TreeNode[];
+    children: (Branch | Leaf)[];
 
     /**
      * Can be called to trigger a check of children to see if any are selected and toggle selected value accordingly.
@@ -38,7 +38,7 @@ export type Leaf<T = any, M = any> = TreeNode & {
  * @param parent
  */
 function newBranchNode(label: string, collapsed: boolean, parent?: Branch): Branch {
-    const children: TreeNode[] = [];
+    const children: (Branch | Leaf)[] = [];
     const selected = createStore(false);
 
     function toggleSelected(isSelected: boolean) {
@@ -95,7 +95,7 @@ export type TreeDataSource = {
     /**
      * The parent nodes. This is what is rendered
      */
-    nodes: TreeNode[]
+    nodes: (Branch | Leaf)[]
 
     /**
      * List of all leaf nodes.  Provided for accessibility to leaves, avoiding repeated node walking.
@@ -105,7 +105,7 @@ export type TreeDataSource = {
 }
 
 
-export function isBranchNode(node: TreeNode): node is Branch {
+export function isBranchNode(node: Branch | Leaf): node is Branch {
     // @ts-ignore
     return Array.isArray(node['children']);
 }
