@@ -1,18 +1,42 @@
 <script>
-    export let className=""
+    import IconEnlarge from "@svlib/components/icon/IconEnlarge.svelte";
+    import Icon from "@svlib/components/icon/Icon.svelte";
+    import IconCollapse from "@svlib/components/icon/IconCollapse.svelte";
+
+    export let className = ""
+
+    /**
+     * Allow expansion to fullscreen - achieved via pos fixed 0 0 0 0
+     * @type {boolean}
+     */
+    export let allowFullscreen = false;
+
+    let fullscreen = false;
+
+    function toggleFullScreen() {
+        console.log(fullscreen)
+        fullscreen = !fullscreen;
+    }
+
 </script>
 
-<div class={`panel ${className}`}>
-    <h2  class="header px-2 bg-gradient-to-r from-dark-400 to-dark-500  ">
+<div class={`panel ${className}`} class:fullscreen>
+    <h2 class="header px-2 bg-gradient-to-r from-dark-400 to-dark-500  ">
         <span class="flex-1">
-            <slot name="header" />
-        </span>        
-        <!-- <Icon title="Fullscreen">
-            <IconEnlarge />
-        </Icon> -->
+            <slot name="header"/>
+        </span>
+        {#if allowFullscreen}
+            <Icon on:click={toggleFullScreen}  className="text-gray-400 cursor-pointer" title={fullscreen ? "Collapse" : "Expand"}>
+                {#if fullscreen}
+                    <IconCollapse/>
+                {:else }
+                    <IconEnlarge/>
+                {/if}
+            </Icon>
+        {/if}
     </h2>
     <div class="body">
-        <slot />
+        <slot/>
     </div>
 </div>
 
@@ -31,5 +55,9 @@
     .body {
         @apply flex-1 mt-1 flex;
         overflow: auto;
+    }
+
+    .fullscreen {
+        @apply fixed inset-1 z-30;
     }
 </style>

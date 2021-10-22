@@ -3,7 +3,7 @@
     export let className = "";
 </script>
 
-<svg viewBox={`0 0 32 32`} class={`icon ${className}`}>
+<svg viewBox={`0 0 32 32`} class={`icon ${className}`} on:click>
     <title>{title}</title>
     <slot />
 </svg>
